@@ -8,4 +8,7 @@ I will try to keep updating these as I get free time from my work,
 
 Contents:
     
-    Polymorhphism in Golang
+    Polymorhphism
+    Go routines
+    Channels
+    JSON Response
