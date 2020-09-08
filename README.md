@@ -12,3 +12,5 @@ Contents:
     Go routines
     Channels
     JSON Response
+    Sorting
+    Type Assertion
