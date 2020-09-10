@@ -15,3 +15,4 @@ Contents:
     Sorting
     Type Assertion
     Mutex
+    Semaphor
