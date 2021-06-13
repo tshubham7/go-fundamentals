@@ -6,6 +6,7 @@ import (
 )
 
 func main() {
+	sortIntegerSlice()
 }
 
 // sort the input array/slice

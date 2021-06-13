@@ -1,31 +1,30 @@
 /*
-when you use channels with multiple go routines
-one way you can do this by using channels
+using buffered channels, it is possible to send multiple messages into a channel without being blocked
 */
 package main
 
 import (
 	"fmt"
-	"sync"
+	"time"
 )
 
-func getDouble(ch chan int, value int) {
-	defer wg.Done()
-	ch <- value * 2
-}
-
-var wg sync.WaitGroup
-
-func main() {
-	ch := make(chan int)
+func write(ch chan int) {
 	for i := 0; i < 10; i++ {
-		wg.Add(1) // telling that we are adding 1 go routine
-		go getDouble(ch, i)
+		ch <- i
+		fmt.Println("successfully wrote", i, "to ch")
 	}
-	wg.Wait()
 	close(ch)
+}
+func main() {
 
-	for value := range ch {
-		fmt.Println(value)
+	// creates capacity of 2
+	ch := make(chan int, 2)
+	go write(ch)
+	time.Sleep(5 * time.Second)
+	for v := range ch {
+		fmt.Println("read value", v, "from ch")
+		// this will take only 2 values at time, once channel flush those 2 values, it can take next 2 values
 	}
 }
+
+// channel can transfer only limited data of it's capacity
