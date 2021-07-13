@@ -1,7 +1,7 @@
 /*
 in the previous example, you can allow your go routine to run as soon as you recieve the free space
 suppose you want to execute in batches,
-for eg. you and your 5 friends going to wants to play playstation together
+for eg. you and your 5 friends wants to play playstation together
 what you want to wait till to you get 5 free spaces so that you can play
 does not matter they have 2 or 3 free space available, you will wait until you get 5.
 let's see
@@ -33,10 +33,10 @@ func main() {
 		sem.Acquire(context.Background(), 1)
 		go feedValue(i, &wg)
 		if sem.TryAcquire(5) { //trying to occupy 5 rooms
+			wg.Add(1)
 			i += 5
 			go feedFiveValue(i, &wg)
 		}
-
 	}
 	wg.Wait()
 	// fmt.Println(numbers)
@@ -44,7 +44,7 @@ func main() {
 
 func feedFiveValue(index int, wg *sync.WaitGroup) {
 	fmt.Printf("runing process from %d to %d together\n", index, index+5)
-	time.Sleep(time.Second * 10)
+	time.Sleep(time.Second * 2)
 	for i := index; i < index+5; i++ {
 		numbers[index] = (index + 1) * 2
 	}

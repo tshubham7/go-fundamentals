@@ -1,2 +1,4 @@
 generics
 .DS_Store
+
+*.env
