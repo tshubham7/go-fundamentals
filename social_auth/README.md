@@ -7,7 +7,8 @@ Similarly you can get auth credentials from other vendor from their respective s
 
 
 ### Library used
-    router: github.com/gorilla/mux
-    social auth: github.com/markbates/goth
+   router: github.com/gorilla/mux
+   
+   social auth: github.com/markbates/goth
 
 
